@@ -1,0 +1,166 @@
+
+{
+    "Title": "Prison Escape",
+    "Credits": "Created by Adam Smith (amsmith@ucsc.edu).",
+    "InitialLocation": "Bed",
+    "Locations": {
+        "Bed":{
+            "Body": "Darkness fills your small cell",
+            "Choices":[
+                {
+                    "Text": "Wake up" ,
+                    "Target": "Room Center"
+                }
+
+            ]
+        },
+        "Room Center":{
+            "Body": "You make your way to the center of the room, your eyes waking up",
+            "Choices":[
+                {
+                    "Text": "Go to Door with food",
+                    "Target": "Door"
+                },
+                {
+                    "Text": "Go to vent",
+                    "Target": "Vent"
+
+                }
+            ]
+        },
+        "Door":{
+            "Body": "A tray of food lies abandonded at your door",
+            "Choices":[
+                {
+                    "Text": "Go back to center of the room",
+                    "Target": "Room Center"
+                }
+            ],
+            "interactions":[
+                {
+                    "type": "food",
+                    "description": "There is a strange smell coming from the food...",
+                    "effect":{
+                        "consume":{
+                            "message":"Darkness engulfs you and a strange vision follows: Right, Left, Right"
+
+                        }
+                    },
+                    "consumable": true
+                }
+            ]
+        },
+
+        "Vent":{
+            "Body": "The vent is dark...",
+            "Choices":[
+                {
+                    "Text": "Take a Left",
+                    "Target": "Room Center"
+                },
+                {
+                    "Text": "Take a Right",
+                    "Target": "RightOne"
+                }
+            ]
+        },
+        "RightOne":{
+            "Body":"The darkness continues, unyielding",
+            "Choices":[
+                {
+                    "Text": "Take a Left",
+                    "Target": "LeftOne"
+                },
+                {
+                    "Text": "Take a Right",
+                    "Target": "Room Center"
+                }
+            ]
+        },
+        "LeftOne":{
+            "Body":"The murk persists, thick and heavy.",
+            "Choices":[
+                {
+                    "Text": "Take a Left",
+                    "Target": "SecretRoom"
+                },
+                {
+                    "Text": "Take a Right",
+                    "Target": "Guard Room"
+                    
+                }
+            ]
+        },
+        "SecretRoom":{
+            "Body": "A discarded guard uniform lies crumpled on the floor, forgotten",
+            "Choices":[
+                {
+                    "Text": "Go to guards room",
+                    "Target": "Guard Room"
+                }
+            ],
+            "items":[
+                {
+                    "id": "key",
+                    "description": "a small, rusty key lies hidden under the uniform.",
+                    "action": "pickup",
+                    "use":{
+                        "target": "LockedDoor",
+                        "unlocks": "EscapeRoute"
+                    }
+                }
+            ]
+        }
+        ,
+        "Guard Room":{
+            "Body": "You've made it to the guards room...",
+
+            "Choices":[
+                {
+                    "Text": "Go to the locked door",
+                    "Target": "LockedDoor"
+                },
+                {
+                    "Text":"Retrace steps back to your cell",
+                    "Target":"Room Center"
+                }
+            ],
+
+            "interactions":[
+                {
+                    "type": "radio",
+                    "description": "A guard radio sits on an abandonded desk",
+                    "states":{
+                        "off":{"messages": "The radio is off..."},
+                        "on": {"messages": ["Theres an old officer uniform on the last left of the vent maze","BLAH BLAH BLAH"]}
+                    },
+                    "initialState": "off"
+                }
+            ]
+        },
+        "LockedDoor":{
+            "Body": "A large door blocks your escape. Locked tightly",
+            "Choices":[
+                {
+                    "Text": "Use key",
+                    "Target": "EscapeRoute",
+                    "requiredItem": "key",
+                    "successText": "You use the key to unlock the door, it swings open",
+                    "failText": "The door is locked. You need to find the key"
+                },
+                { 
+                    "Text":"Return to the guard room",
+                    "Target": "Guard Room"
+                }
+            ]
+        },
+        "EscapeRoute": {
+            "Body": "The door opens into a dimly lit corridor that leads to freedom."
+
+        }
+        
+        
+        
+
+    }
+}
