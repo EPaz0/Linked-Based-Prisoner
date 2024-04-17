@@ -52,8 +52,7 @@ class Location extends Scene {
         if (!this.engine.inventory.hasItem(item.id)) {
             this.engine.inventory.addItem(item.id);
             this.engine.show(`You picked up ${item.description}.`);
-            // Optionally remove the pickup option or disable it
-            // Optionally provide a choice to go back after picking up the item
+
             this.engine.addChoice("Continue to guard room", () => this.engine.gotoScene(Location, locationKey));
         } else {
             this.engine.show(`You already have the ${item.description}.`);

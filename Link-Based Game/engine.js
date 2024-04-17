@@ -95,7 +95,5 @@ class Scene {
         console.warn('No choice handler on scene ', this);
     }
 
-    cleanup() {
-        // Optional: Cleanup before leaving the scene
-    }
+
 }
